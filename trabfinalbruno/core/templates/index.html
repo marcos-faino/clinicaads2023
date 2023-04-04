@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+    <h1>Ordem de Serviço</h1>
+    <br/>
+    <p class="lead text-muted"><h4>Controle de Atendimentos<h4/></p>
+        <a href="{% url 'castraratendimento' %}" class="btn btn-primary">Cadastro Atendimento</a>
+        <a href="{% url 'listaratendimento' %}" class="btn btn-info">Listar Ordem de Serviço</a>
+        <a href="{% url 'cadastrartecnico' %}" class="btn btn-secondary">Cadastro Técnico</a>
+        <a href="{% url 'listartecnico' %}" class="btn btn-success">Listar Técnico</a>
+
+{% endblock %}

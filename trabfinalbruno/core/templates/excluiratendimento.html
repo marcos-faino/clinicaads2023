@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block conteudo %}
+    <h1>Exclusão do Atendimento</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h3>Confirma a exclusão da OS: {{ object.id }} Téc: {{ object.tecnico.nome }}</h3>
+        {% buttons %}
+            <input type="submit" class="btn btn-primary" value="Excluir">
+            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+        {% endbuttons %}
+    </form>
+{% endblock %}

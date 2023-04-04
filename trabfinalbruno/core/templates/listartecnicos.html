@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Lista de Técnicos</h1>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>Cod</th>
+        <th>Nome</th>
+        <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for t in tecnicos %}
+    <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.nome }}</td>
+        <td>
+            <a href="{% url 'atualizartecnico' t.id %}" class="btn btn-warning">Editar</a>&nbsp;&nbsp;
+            <a href="{% url 'excluirtecnico' t.id %}" class="btn btn-danger">Excluir</a>
+        </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'cadastrartecnico' %}" class="btn btn-dark">Cadastrar</a>
+<a href="{% url 'index' %}" class="btn btn-info">Voltar</a>
+{% endblock %}

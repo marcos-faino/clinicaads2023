@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block conteudo %}
+<h1>Lista de Atendimentos</h1>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>Cod</th>
+        <th>Descrição</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Técnico</th>
+        <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for a in atendimentos %}
+    <tr>
+        <td>{{ a.id }}</td>
+        <td>{{ a.descricao }}</td>
+        <td>{{ a.preco }}</td>
+        <td>{{ a.quantidade }}</td>
+        <td>{{ a.tecnico.nome }}</td>
+        <td>
+            <a href="{% url 'atualizaratendimento' a.id %}" class="btn btn-warning">Editar</a>&nbsp;&nbsp;
+            <a href="{% url 'excluiratendimento' a.id %}" class="btn btn-danger">Excluir</a>
+        </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'castraratendimento' %}" class="btn btn-dark">Adicionar</a>
+<a href="{% url 'index' %}" class="btn btn-info">Voltar</a>
+{% endblock %}

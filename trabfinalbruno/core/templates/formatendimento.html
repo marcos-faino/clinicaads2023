@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block conteudo %}
+    <h1>Ordem Serviço</h1>
+          <p class="lead text-muted">Controle de Atendimentos</p>
+                <form method="post">
+                    {% csrf_token %}
+                        {% bootstrap_form form %}
+                        {% buttons %}
+                            <input type="submit" class="btn btn-primary" value="Salvar">
+                            <a href="{% url 'index' %}" class="btn btn-danger">Cancelar</a>
+                        {% endbuttons %}
+                </form>
+{% endblock %}
