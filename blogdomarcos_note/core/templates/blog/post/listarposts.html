@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block titulo %} Meu Blog => Listando Posts {% endblock %}
-
+'
 {% block conteudo %}
 {% for p in posts %}
 <section data-bs-version="5.1" class="content10 cid-tzVgp39K95" id="content10-1">
@@ -39,4 +38,5 @@
 </section>
 <hr>
 {% endfor %}
+{% include "paginacao.html" with page=page_obj %}
 {% endblock %}
