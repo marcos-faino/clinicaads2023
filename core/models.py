@@ -100,6 +100,7 @@ class Paciente(models.Model):
     def __str__(self):
         return self.nome
 
+
 class Possui(models.Model):
     paciente = models.ForeignKey(Paciente, models.CASCADE, db_column='paciente')
     convenio = models.ForeignKey(Convenio, models.CASCADE, db_column='convenio')

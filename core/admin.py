@@ -6,7 +6,7 @@ class ConvenioAdmin(admin.ModelAdmin):
     fields = ('codconv', 'nome',)
 
 
-class ConvenioInline(admin.StackedInline):
+class MedicoConvenioInline(admin.StackedInline):
     model = models.Atende
     extra = 1
     raw_id_fields = ['convenio']
@@ -15,5 +15,17 @@ class ConvenioInline(admin.StackedInline):
 @admin.register(models.Medico)
 class MedicoAdmin(admin.ModelAdmin):
     fields = ('crm', 'nome', 'telefone', 'salario', 'ambulatorio')
-    inlines = [ConvenioInline,]
+    inlines = [MedicoConvenioInline,]
 
+
+
+class PacienteConvenioInline(admin.StackedInline):
+    model = models.Possui
+    extra = 1
+    raw_id_fields = ['convenio']
+
+
+@admin.register(models.Paciente)
+class PacienteAdmin(admin.ModelAdmin):
+    fields = ('nome', 'telefone', 'idade', 'ambulatorio')
+    inlines = [PacienteConvenioInline,]
