@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<article>
+<div id="grafico" style="width: 900px; height: 300px;"></div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    function geracor(){
+       cor = "";
+       cor += Math.floor(Math.random()*255) +',';
+       cor += Math.floor(Math.random()*255) +',';
+       cor += Math.floor(Math.random()*255);
+       return cor
+    }
+
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Médico", "Consultas", { role: "style" } ],
+        {% for medico in dados %}
+        ["{{ medico.nome }}", {{ medico.quant }}, "rgb(" + geracor() + ")"],
+        {% endfor %}
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Consultas por Médico",
+        width: 1000,
+        height: 400,
+        bar: {groupWidth: "95%"},
+        legend: { position: "none" },
+        backgroundColor: 'transparent',
+        opacity:'0.2',
+      };
+      var chart = new google.visualization.ColumnChart(document.getElementById("grafico"));
+      chart.draw(view, options);
+  }
+  </script>
+{% endblock %}

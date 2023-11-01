@@ -1,0 +1,27 @@
+<!doctype html>
+<html data-theme="dark" lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Dashboard Consultas</title>
+</head>
+<body>
+<main class="container">
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}"><strong>Clinica ADS 2023</strong></a></li>
+        </ul>
+        <ul>
+            <li><a href="{% url 'consconv' %}">Consultas por Convênio</a></li>
+            <li><a href="{% url 'consmed' %}">Consultas por Médico</a></li>
+            <li><a href="#">Link</a></li>
+        </ul>
+    </nav>
+    {% block conteudo %}
+    {% endblock %}
+</main>
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

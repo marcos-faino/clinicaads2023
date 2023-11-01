@@ -27,5 +27,5 @@ class PacienteConvenioInline(admin.StackedInline):
 
 @admin.register(models.Paciente)
 class PacienteAdmin(admin.ModelAdmin):
-    fields = ('nome', 'telefone', 'idade', 'ambulatorio')
+    list_display = ('nome', 'telefone', 'idade', 'ambulatorio')
     inlines = [PacienteConvenioInline,]

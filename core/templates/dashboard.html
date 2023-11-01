@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<article>
+    <p>
+        <img src="data:image/png;base64, {{ grafico|safe }}"
+             alt="gráfico consultas por convênio">
+    </p>
+</article>
+{% endblock %}
