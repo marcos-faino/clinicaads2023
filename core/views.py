@@ -67,19 +67,30 @@ class MedicosAtendView(TemplateView):
         return ctx
 
 
-
-
 class RelatorioConsultasAno(View):
 
     def get(self, request, ano):
+        meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
         data = []
         labels = []
-        consultas = Consulta.objects.all().values('data__year').annotate(total = Count(id))
-        for c in consultas:
-            labels.append(c['data__year'])
-            data.append(c['total'])
+        # consultas = Consulta.objects.all().values('data__year').annotate(total=Count(id))
+        consultasano = Consulta.objects.all().filter(data__year=ano)
+        consultas = consultasano.values('data__month').annotate(total=Count(id))
+        for i in range(1, 12):
+            labels.append(meses[i-1])
+            for c in consultas:
+                if i == c['data__month']:
+                    data.append(c['total'])
+            data.append(0)
 
         return JsonResponse({'labels':labels, 'data': data})
 
 
+class EscolhaMesView(TemplateView):
+    template_name = "dashboardchartjs.html"
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        anos = Consulta.objects.all().values('data__year').distinct()
+        ctx['anos'] = anos
+        return ctx
