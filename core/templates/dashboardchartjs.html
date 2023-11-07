@@ -16,50 +16,5 @@
 {% endblock %}
 {% block scripts %}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    function geracor(qtd){
-       cores = [];
-       for (let i = 0; i <= qtd; i++){
-          cor = "";
-          cor += Math.floor(Math.random()*255) +',';
-          cor += Math.floor(Math.random()*255) +',';
-          cor += Math.floor(Math.random()*255);
-          cores[cores.length - 1] = cor;
-       }
-       return cores
-    }
-    grafano.onchange = function(){
-        let url = this.value;
-        fetch(url, {
-            method: 'get',
-        }).then(function(result){
-            return result.json()
-        }).then(function(data){
-            grafico = Chart.getChart("grafico");
-            if(grafico) grafico.destroy(); // quase perdi os cabelos aqui.
-            var cores = geracor(qtd=12);
-            var ctx = document.getElementById('grafico').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                    datasets: [{
-                        label: 'Consultas Mensais', // data.labels,
-                        data: data.data,
-                        backgroundColor: cores[0],
-                        borderColor: cores[1],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
-    }
-</script>
+
 {% endblock %}
