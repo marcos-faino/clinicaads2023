@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-theme="dark" lang="pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@
         <ul>
             <li><a href="{% url 'consconv' %}">Consultas por Convênio</a></li>
             <li><a href="{% url 'consmed' %}">Consultas por Médico</a></li>
-            <li><a href="#">Link</a></li>
+            <li><a href="{% url 'consultasmes' %}">Consultas por mês</a></li>
         </ul>
     </nav>
     {% block conteudo %}

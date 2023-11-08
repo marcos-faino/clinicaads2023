@@ -86,7 +86,7 @@ class RelatorioConsultasAno(View):
         return JsonResponse({'labels':labels, 'data': data})
 
 
-class EscolhaMesView(TemplateView):
+class EscolhaAnoView(TemplateView):
     template_name = "dashboardchartjs.html"
 
     def get_context_data(self, **kwargs):
